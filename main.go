@@ -48,6 +48,8 @@ func countLinesAndBytes(fileName string) (int, int, error) {
 func main() {
 	app := &cli.App{
 		UseShortOptionHandling: true,
+		Name:                   "wc",
+		Usage:                  "wc tool written in Go",
 		Flags: []cli.Flag{
 			// Specify command-line options for counting
 			// bytes, lines, and words
