@@ -79,6 +79,19 @@ func main() {
 			}
 			fileName = cliContext.Args().Get(0)
 
+			// Check if no options are provided, which is the equivalent to the -clw
+			if cliContext.NumFlags() == 0 {
+				numBytes, numLines, err = countLinesAndBytes(fileName)
+				if err != nil {
+					return err
+				}
+				numWords, err = countWords(fileName)
+				if err != nil {
+					return err
+				}
+				counts = append(counts, numLines, numWords, numBytes)
+			}
+
 			// Count words if the corresponding flag is set
 			if cliContext.Bool("words") {
 				numWords, err = countWords(fileName)
